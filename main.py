@@ -632,3 +632,14 @@ health_thread.start()
 
 # Run main function
 main()
+from flask import Flask
+from threading import Thread
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot is running!"
+
+# Start the web server in background
+Thread(target=lambda: app.run(host='0.0.0.0', port=10000)).start()
